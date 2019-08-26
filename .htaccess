@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# End the processing, if a rewrite already occurred
+RewriteRule ^web/ - [L]
+
+# handle the case of frontend
+RewriteRule .* web/$0
