@@ -29,10 +29,14 @@ class ApiController extends \app\components\Controller
 	}
 
 
-	public function actionItems()
+	public function actionItems($categoryId = null)
 	{
 		$groupedItems = [];
-		$items = \app\models\Item::getAllActive();
+
+		if($categoryId)
+			$items = \app\models\Item::getAllByCategory($categoryId);
+		else
+			$items = \app\models\Item::getAllActive();
 
 		foreach($items as $item)
 		{
@@ -47,12 +51,6 @@ class ApiController extends \app\components\Controller
 
 
 		return $groupedItems;
-	}
-
-
-	public function actionCategoryItems($id)
-	{
-		return array_map(function($v){ return $v->toExternalArray(); }, \app\models\Item::getAllByCategory($id));
 	}
 
 
@@ -71,18 +69,5 @@ class ApiController extends \app\components\Controller
 	public function actionJobOffers()
 	{
 		return array_map(function($v){ return $v->toExternalArray(); }, \app\models\Job::getAllActive());
-	}
-
-
-	public function actionJobOfferDetails($id)
-	{
-		$job = \app\models\Job::getActiveById($id);
-
-		if($job)
-			return $job->toExternalArray();
-		else
-			return [
-				'error' => 'Job offer doesn\'t exists!'
-			];
 	}
 }

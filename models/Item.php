@@ -99,6 +99,7 @@ class Item extends \app\components\ActiveRecord
 			'name' => $this->name,
 			'description' => $this->description,
 			'price' => $this->price,
+			'priceFormatted' => '$'.number_format($this->price, 2)
 		];
 	}
 }

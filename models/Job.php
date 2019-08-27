@@ -60,8 +60,8 @@ class Job extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'name' => $this->name,
-			'descrpition' => $this->descrpition
+			'title' => $this->title,
+			'description' => $this->descrpition
 		];
 	}
 }
