@@ -69,6 +69,7 @@ class Coupon extends \app\components\ActiveRecord
 	public function toExternalArray()
 	{
 		return [
+			'id' => $this->id,
 			'title' => $this->title,
 			'description' => $this->description,
 			'dateTo' => $this->dateTo,

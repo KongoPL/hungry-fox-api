@@ -72,6 +72,7 @@ class Staff extends \app\components\ActiveRecord
 	public function toExternalArray()
 	{
 		return [
+			'id' => $this->id,
 			'name' => $this->name,
 			'position' => $this->position,
 			'email' => $this->email,

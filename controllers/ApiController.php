@@ -31,14 +31,11 @@ class ApiController extends \app\components\Controller
 	}
 
 
-	public function actionItems($categoryId = null)
+	public function actionItems()
 	{
 		$groupedItems = [];
 
-		if($categoryId)
-			$items = \app\models\Item::getAllByCategory($categoryId);
-		else
-			$items = \app\models\Item::getAllActive();
+		$items = \app\models\Item::getAllActive();
 
 		foreach($items as $item)
 		{
