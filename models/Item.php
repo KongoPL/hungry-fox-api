@@ -16,6 +16,7 @@ use Yii;
  *
  * @property Category $category
  * @property OrderItem[] $orderItems
+ * @property string $imageUrl
  */
 class Item extends \app\components\ActiveRecord
 {
@@ -75,6 +76,12 @@ class Item extends \app\components\ActiveRecord
     }
 
 
+	public function getImageUrl()
+	{
+		return Yii::$app->urlManager->createAbsoluteUrl('images/category-icon.png');
+	}
+
+
 	public static function getAllActive()
 	{
 		return self::find()->where([
@@ -99,7 +106,8 @@ class Item extends \app\components\ActiveRecord
 			'name' => $this->name,
 			'description' => $this->description,
 			'price' => $this->price,
-			'priceFormatted' => '$'.number_format($this->price, 2)
+			'priceFormatted' => '$'.number_format($this->price, 2),
+			'imageUrl' => $this->imageUrl
 		];
 	}
 }

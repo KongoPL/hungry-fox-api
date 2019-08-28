@@ -13,6 +13,8 @@ use Yii;
  * @property string $email
  * @property string $phone
  * @property int $status
+ *
+ * @property string $imageUrl
  */
 class Staff extends \app\components\ActiveRecord
 {
@@ -53,6 +55,12 @@ class Staff extends \app\components\ActiveRecord
     }
 
 
+	public function getImageUrl()
+	{
+		return Yii::$app->urlManager->createAbsoluteUrl('images/staff-member.jpg');
+	}
+
+
 	public static function getAllActive()
 	{
 		return self::find()->where([
@@ -68,6 +76,7 @@ class Staff extends \app\components\ActiveRecord
 			'position' => $this->position,
 			'email' => $this->email,
 			'phone' => $this->phone,
+			'imageUrl' => $this->imageUrl
 		];
 	}
 }

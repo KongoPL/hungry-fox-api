@@ -12,6 +12,7 @@ use Yii;
  * @property int $status
  *
  * @property Item[] $items
+ * @property string $imageUrl
  */
 class Category extends \app\components\ActiveRecord
 {
@@ -55,6 +56,12 @@ class Category extends \app\components\ActiveRecord
     }
 
 
+	public function getImageUrl()
+	{
+		return Yii::$app->urlManager->createAbsoluteUrl('images/category-icon.png');
+	}
+
+
 	public static function getAllActive()
 	{
 		return self::find()->where(['status' => self::STATUS_OK])->all();
@@ -65,7 +72,8 @@ class Category extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'name' => $this->name
+			'name' => $this->name,
+			'imageUrl' => $this->imageUrl
 		];
 	}
 }

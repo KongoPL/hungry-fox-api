@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use Yii;
+
 class ApiController extends \app\components\Controller
 {
 	public function actionIndex()
@@ -69,5 +71,22 @@ class ApiController extends \app\components\Controller
 	public function actionJobOffers()
 	{
 		return array_map(function($v){ return $v->toExternalArray(); }, \app\models\Job::getAllActive());
+	}
+
+
+
+	public function actionContact()
+	{
+		$data = Yii::$app->request->post();
+
+		if($data)
+		{
+			if(isset($data['email'], $data['name'], $data['message']))
+				return "OK";
+		}
+
+		return [
+			'error' => 'Missing required fields: email, name, message'
+		];
 	}
 }

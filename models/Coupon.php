@@ -12,6 +12,8 @@ use Yii;
  * @property string $description
  * @property string $dateTo
  * @property int $status
+ *
+ * @property string $imageUrl
  */
 class Coupon extends \app\components\ActiveRecord
 {
@@ -50,6 +52,12 @@ class Coupon extends \app\components\ActiveRecord
     }
 
 
+	public function getImageUrl()
+	{
+		return Yii::$app->urlManager->createAbsoluteUrl('images/sale-graphic.png');
+	}
+
+
 	public static function getAllActive()
 	{
 		return self::find()->where('status = :status AND (`dateTo` = "1970-01-01 00:00:00" OR `dateTo` >= NOW())', [
@@ -64,7 +72,8 @@ class Coupon extends \app\components\ActiveRecord
 			'title' => $this->title,
 			'description' => $this->description,
 			'dateTo' => $this->dateTo,
-			'dateToTimestamp' => strtotime($this->dateTo)
+			'dateToTimestamp' => strtotime($this->dateTo),
+			'imageUrl' => $this->imageUrl,
 		];
 	}
 }
