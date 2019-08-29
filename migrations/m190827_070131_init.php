@@ -53,13 +53,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Translation` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(64) NOT NULL,
+  `table` VARCHAR(32) NOT NULL,
+  `column` VARCHAR(32) NOT NULL,
+  `recordId` INT(10) UNSIGNED NULL,
   `language` VARCHAR(4) NOT NULL,
   `value` TEXT NOT NULL,
   `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+ALTER TABLE `Translation`
+ADD UNIQUE `table_column_recordId_language` (`table`, `column`, `recordId`, `language`);
 
 -- -----------------------------------------------------
 -- Table `Coupons`
@@ -100,50 +104,6 @@ CREATE TABLE IF NOT EXISTS `Job` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `Order`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Order` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(32) NULL,
-  `phone` VARCHAR(14) NULL,
-  `street` VARCHAR(32) NULL,
-  `buildingNumber` VARCHAR(5) NULL,
-  `apartmentNumber` VARCHAR(5) NULL,
-  `paymentMethod` TINYINT(1) UNSIGNED NULL,
-  `comments` TEXT NULL,
-  `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-  `createTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `completeTime` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
-  `estimatedDeliveryTime` DATETIME NULL,
-  `deliveryTime` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `OrderItem`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `OrderItem` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `orderId` INT UNSIGNED NOT NULL,
-  `itemId` INT NOT NULL,
-  `buyPrice` DECIMAL(5,2) UNSIGNED NULL,
-  `quantity` TINYINT(3) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_OrderItem_Order1_idx` (`orderId` ASC),
-  INDEX `fk_OrderItem_Item1_idx` (`itemId` ASC),
-  CONSTRAINT `fk_OrderItem_Order1`
-    FOREIGN KEY (`orderId`)
-    REFERENCES `Order` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_OrderItem_Item1`
-    FOREIGN KEY (`itemId`)
-    REFERENCES `Item` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

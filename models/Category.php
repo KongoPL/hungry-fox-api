@@ -72,7 +72,7 @@ class Category extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'name' => $this->name,
+			'name' => $this->localizedName,
 			'imageUrl' => $this->imageUrl
 		];
 	}

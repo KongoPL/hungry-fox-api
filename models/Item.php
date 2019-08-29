@@ -103,9 +103,9 @@ class Item extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'name' => $this->name,
-			'description' => $this->description,
-			'price' => $this->price,
+			'name' => $this->localizedName,
+			'description' => $this->localizedDescription,
+			'price' => (float) $this->price,
 			'priceFormatted' => '$'.number_format($this->price, 2),
 			'imageUrl' => $this->imageUrl
 		];

@@ -73,8 +73,8 @@ class Staff extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'name' => $this->name,
-			'position' => $this->position,
+			'name' => $this->localizedName,
+			'position' => $this->localizedPosition,
 			'email' => $this->email,
 			'phone' => $this->phone,
 			'imageUrl' => $this->imageUrl

@@ -41,7 +41,7 @@ class ApiController extends \app\components\Controller
 		{
 			if(!isset($groupedItems[$item->categoryId]))
 				$groupedItems[$item->categoryId] = [
-					'categoryName' => $item->category->name,
+					'categoryName' => $item->category->localizedName,
 					'items' => []
 				];
 
@@ -69,8 +69,6 @@ class ApiController extends \app\components\Controller
 	{
 		return array_map(function($v){ return $v->toExternalArray(); }, \app\models\Job::getAllActive());
 	}
-
-
 
 	public function actionContact()
 	{

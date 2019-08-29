@@ -70,8 +70,8 @@ class Coupon extends \app\components\ActiveRecord
 	{
 		return [
 			'id' => $this->id,
-			'title' => $this->title,
-			'description' => $this->description,
+			'title' => $this->localizedTitle,
+			'description' => $this->localizedDescription,
 			'dateTo' => $this->dateTo,
 			'dateToTimestamp' => strtotime($this->dateTo),
 			'imageUrl' => $this->imageUrl,
