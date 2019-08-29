@@ -1,6 +1,6 @@
 # Hungry Fox API
 
-React APP project: [click](https://github.com/KongoPL/Hungry-Fox)
+**React APP project:** [click](https://github.com/KongoPL/Hungry-Fox)
 
 Simple API created with [Yii 2.0 framework](https://www.yiiframework.com/).
 
@@ -28,4 +28,5 @@ Access link: `my-website.com/api/[action]`
 * contact
 
 You can also change language of returning data by sending `X-Language` header (accepted values: `en` and `pl`).
-Returned output is always JSON
+
+** Returned output is always JSON **
