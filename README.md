@@ -1,6 +1,6 @@
 # Hungry Fox API
 
-**React APP project:** [click](https://github.com/KongoPL/Hungry-Fox)
+**React App project:** [click](https://github.com/KongoPL/Hungry-Fox)
 
 Simple API created with [Yii 2.0 framework](https://www.yiiframework.com/).
 
